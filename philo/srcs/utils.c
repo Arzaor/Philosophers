@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbarette <jbarette@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 13:24:58 by jbarette          #+#    #+#             */
-/*   Updated: 2022/07/11 14:20:14 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/08/15 13:41:35 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,6 @@ void		ft_exit(char *str)
 {
 	printf("%s\n", str);
 	exit(1);
-}
-
-t_pthread	*ft_init(void)
-{
-	t_pthread	*pthread;
-
-	pthread = malloc(sizeof(t_pthread));
-	pthread->np = 0;
-	pthread->np = 0;
-	pthread->ttd = 0;
-	pthread->tte = 0;
-	pthread->tts = 0;
-	return (pthread);
 }
 
 int			ft_isdigit(int c)

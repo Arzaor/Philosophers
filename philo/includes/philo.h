@@ -3,26 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbarette <jbarette@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 13:09:15 by jbarette          #+#    #+#             */
-/*   Updated: 2022/07/11 14:47:50 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/08/15 15:34:29 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-#include <stdio.h>
-#include <stdlib.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <pthread.h>
+
+typedef struct	s_philos
+{
+	int			pid;
+	pthread_t	tid;
+}				t_philos;
 
 typedef struct	s_pthread
 {
-	int	np;
-	int	ttd;
-	int	tte;
-	int	tts;
-	int	nte;
+	int				np;
+	int				ttd;
+	int				tte;
+	int				tts;
+	int				nte;
+	t_philos		*philos;
+	pthread_mutex_t	food;
+	pthread_mutex_t	message;
+	pthread_mutex_t	*chopsticks;
 }				t_pthread;
 
 // PARSING
@@ -33,9 +45,17 @@ void		parsing_amount(int argc, char **argv);
 t_pthread	*parsing_save_to_struct(int argc, char **argv);
 void		ft_debug(t_pthread *pthread);
 
+// INIT
+t_pthread	*init_pthread(void);
+void		init_mutex(t_pthread *pthread);
+void		init_philos(void);
+
+// START
+void	start(t_pthread *pthread);
+void	destroy_mutex(t_pthread	*pthread);
+
 // UTILS
 void		ft_exit(char *str);
-t_pthread	*ft_init();
 int			ft_isdigit(int c);
 long long	ft_atoi(const char *str);
 

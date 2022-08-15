@@ -3,8 +3,10 @@ NAME	=	philo
 SRCS	=	srcs/main.c \
 			srcs/utils.c \
 			srcs/parsing.c \
+			srcs/init.c \
+			srcs/start.c \
 
-FLAGS	=	-Wall -Wextra -Werror -I ./includes  
+FLAGS	=	-I ./includes  
 
 CC		=	gcc $(FLAGS)
 
