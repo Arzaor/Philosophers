@@ -6,7 +6,7 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 14:33:12 by jbarette          #+#    #+#             */
-/*   Updated: 2022/08/15 15:34:11 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/08/29 12:05:27 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static	void	*routine(void	*p)
 	t_philos	*philos;
 
 	pthread = init_pthread();
-	philos = p; 
-	printf("%d\n", pthread->np);
+	philos = p;
+	printf("%d\n", philos->pid);
 	return NULL;
 }
 
@@ -44,10 +44,12 @@ void	start(t_pthread *pthread)
 	int	i;
 
 	i = 0;
+	pthread->start = timestamp();
 	while (i < pthread->np)
 	{
 		if (pthread_create(&pthread->philos[i].tid, NULL, routine, &pthread->philos[i]))
 			ft_exit("Erreur lors de la creation des philosophers.");
+		pthread->philos[i].last_meal = pthread->start;
 		i++;
 	}
 	i = 0;
