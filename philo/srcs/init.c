@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbarette <jbarette@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 13:41:37 by jbarette          #+#    #+#             */
-/*   Updated: 2022/08/31 23:28:38 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/09/01 12:57:00 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	init_mutex(t_pthread *pthread)
 	{
 		if (pthread_mutex_init(&pthread->chopsticks[i], NULL))
 			ft_exit("Erreur lors l'initialisation des mutex pour les fourchettes.");
-		pthread->philos[i].pid = i + 1;
+		pthread->philos[i].pid = i;
 		pthread->philos[i].pthread = pthread;
 	}
 	if (pthread_mutex_init(&pthread->food, NULL))

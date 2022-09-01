@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbarette <jbarette@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 13:09:15 by jbarette          #+#    #+#             */
-/*   Updated: 2022/09/01 10:14:02 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/09/01 13:01:30 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct	s_philos
 	int			pid;
 	long long	last_meal;
 	int			ate;
+	int			left_f;
+	int			right_f;
 	t_pthread	*pthread;
 	pthread_t	tid;
 }				t_philos;
@@ -68,5 +70,6 @@ void		ft_exit(char *str);
 int			ft_isdigit(int c);
 long long	ft_atoi(const char *str);
 long long	get_time(void);
+void		print_message(t_philos *philos, char *str);
 
 #endif
