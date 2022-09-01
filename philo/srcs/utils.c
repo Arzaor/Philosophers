@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbarette <jbarette@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 13:24:58 by jbarette          #+#    #+#             */
-/*   Updated: 2022/08/15 13:41:35 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/08/31 23:26:09 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,12 @@ long long	ft_atoi(const char *str)
 	while ((*str >= '0' && *str <= '9'))
 		n = (n * 10) + (*(str++) - '0');
 	return (n * num);
+}
+
+long long	get_time(void)
+{
+	struct timeval	t;
+
+	gettimeofday(&t, NULL);
+	return (t.tv_sec * 1000 + t.tv_usec / 1000);
 }

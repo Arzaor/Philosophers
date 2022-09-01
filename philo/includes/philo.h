@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbarette <jbarette@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 13:09:15 by jbarette          #+#    #+#             */
-/*   Updated: 2022/08/15 15:34:29 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/08/31 23:44:57 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,17 @@
 # include <stdlib.h>
 # include <string.h>
 # include <pthread.h>
+# include <sys/time.h>
+# include <unistd.h>
+
+typedef struct s_pthread	t_pthread;
 
 typedef struct	s_philos
 {
 	int			pid;
+	long long	last_meal;
+	int			ate;
+	t_pthread	*pthread;
 	pthread_t	tid;
 }				t_philos;
 
@@ -31,6 +38,8 @@ typedef struct	s_pthread
 	int				tte;
 	int				tts;
 	int				nte;
+	int				dead;
+	long long		start;
 	t_philos		*philos;
 	pthread_mutex_t	food;
 	pthread_mutex_t	message;
@@ -58,5 +67,6 @@ void	destroy_mutex(t_pthread	*pthread);
 void		ft_exit(char *str);
 int			ft_isdigit(int c);
 long long	ft_atoi(const char *str);
+long long	get_time(void);
 
 #endif
