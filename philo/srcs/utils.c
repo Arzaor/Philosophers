@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbarette <jbarette@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 13:24:58 by jbarette          #+#    #+#             */
-/*   Updated: 2022/09/01 13:02:00 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/09/02 14:34:36 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,17 @@ void	print_message(t_philos *philos, char *str)
 	if (philos->pthread->dead != 1)
 		printf("%lld %i %s\n", get_time() - philos->pthread->start, philos->pid + 1, str);
 	pthread_mutex_unlock(&philos->pthread->message);
+}
+
+void	pwait(t_pthread *m, long long time)
+{
+	long long	st;
+
+	st = get_time();
+	while (!m->dead)
+	{
+		if (get_time() - st >= time)
+			break ;
+		usleep(100);
+	}
 }

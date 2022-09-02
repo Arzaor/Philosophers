@@ -3,27 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   start.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbarette <jbarette@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 14:33:12 by jbarette          #+#    #+#             */
-/*   Updated: 2022/09/01 13:01:55 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/09/02 14:47:25 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	pwait(t_pthread *m, long long time)
-{
-	long long	st;
-
-	st = get_time();
-	while (!m->dead)
-	{
-		if (get_time() - st >= time)
-			break ;
-		usleep(100);
-	}
-}
 
 void	routine_eat(t_philos *philo)
 {
@@ -37,7 +24,7 @@ void	routine_eat(t_philos *philo)
 	pthread_mutex_unlock(&philo->pthread->food);
 	pwait(philo->pthread, philo->pthread->tte);
 	pthread_mutex_unlock(&philo->pthread->chopsticks[philo->pid]);
-	pthread_mutex_lock(&philo->pthread->chopsticks[(philo->pid + 1) % philo->pthread->np]);
+	pthread_mutex_unlock(&philo->pthread->chopsticks[(philo->pid + 1) % philo->pthread->np]);
 }
 
 void	*routine(void *param)
