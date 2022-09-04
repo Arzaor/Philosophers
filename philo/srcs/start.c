@@ -6,7 +6,7 @@
 /*   By: jbarette <jbarette@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 14:33:12 by jbarette          #+#    #+#             */
-/*   Updated: 2022/09/02 14:47:25 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/09/04 21:21:24 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	routine_eat(t_philos *philo)
 	print_message(philo, "has taken a fork");
 	pthread_mutex_lock(&philo->pthread->food);
 	print_message(philo, "is eating");
+	philo->ate++;
 	philo->last_meal = get_time();
 	pthread_mutex_unlock(&philo->pthread->food);
 	pwait(philo->pthread, philo->pthread->tte);
@@ -47,10 +48,11 @@ void	*routine(void *param)
 	while (philo->pthread->dead != 1)
 	{
 		routine_eat(philo);
+		if (philo->pthread->all_ate)
+			break ;
 		print_message(philo, "is sleeping");
 		pwait(philo->pthread, philo->pthread->tts);
 		print_message(philo, "is thinking");
-		philo->ate++;
 	}
 	return (NULL);
 }
@@ -65,10 +67,10 @@ void	destroy_mutex(t_pthread	*pthread)
 		if (pthread_mutex_destroy(&pthread->chopsticks[i]))
 			ft_exit("Erreur lors de la destruction des mutex pour les fourchettes.");
 	}
-	if (pthread_mutex_destroy(&pthread->food))
-		ft_exit("Erreur lors de la destruction du mutex pour la nourriture.");
 	if (pthread_mutex_destroy(&pthread->message))
 		ft_exit("Erreur lors de la destruction du mutex pour les messages.");
+	if (pthread_mutex_destroy(&pthread->food))
+		ft_exit("Erreur lors de la destruction du mutex pour la nourriture.");
 }
 
 void	start(t_pthread *pthread)
@@ -83,6 +85,7 @@ void	start(t_pthread *pthread)
 			ft_exit("Erreur lors de la creation des philosophers.");
 		pthread->philos[i].last_meal = pthread->start;
 	}
+	deathwatch(pthread, pthread->philos);
 	i = -1;
 	while (++i < pthread->np)
 		pthread_join(pthread->philos[i].tid, NULL);

@@ -5,6 +5,7 @@ SRCS	=	srcs/main.c \
 			srcs/parsing.c \
 			srcs/init.c \
 			srcs/start.c \
+			srcs/death.c \
 
 FLAGS	=	-I ./includes  
 

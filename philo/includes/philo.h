@@ -6,7 +6,7 @@
 /*   By: jbarette <jbarette@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 13:09:15 by jbarette          #+#    #+#             */
-/*   Updated: 2022/09/02 14:34:43 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/09/03 01:13:22 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct	s_pthread
 	int				tts;
 	int				nte;
 	int				dead;
+	int				all_ate;
 	long long		start;
 	t_philos		*philos;
 	pthread_mutex_t	food;
@@ -64,6 +65,9 @@ void		init_philos(void);
 // START
 void	start(t_pthread *pthread);
 void	destroy_mutex(t_pthread	*pthread);
+
+// DEATH
+void	deathwatch(t_pthread *m, t_philos *p);
 
 // UTILS
 void		ft_exit(char *str);
