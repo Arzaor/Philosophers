@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbarette <jbarette@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 13:09:15 by jbarette          #+#    #+#             */
-/*   Updated: 2022/09/03 01:13:22 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:10:36 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,14 @@ void		init_philos(void);
 
 // START
 void	start(t_pthread *pthread);
-void	destroy_mutex(t_pthread	*pthread);
 
-// DEATH
-void	deathwatch(t_pthread *m, t_philos *p);
+// ROUTINE
+void	*routine(void *param);
+void	routine_eat(t_philos *philo);
+
+// DESTROY
+void	destroy_mutex(t_pthread	*pthread);
+void	death(t_pthread *m);
 
 // UTILS
 void		ft_exit(char *str);
@@ -75,6 +79,5 @@ int			ft_isdigit(int c);
 long long	ft_atoi(const char *str);
 long long	get_time(void);
 void		print_message(t_philos *philos, char *str);
-void		pwait(t_pthread *m, long long time);
 
 #endif
