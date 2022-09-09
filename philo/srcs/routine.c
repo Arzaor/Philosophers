@@ -6,7 +6,7 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:08:11 by jbarette          #+#    #+#             */
-/*   Updated: 2022/09/06 16:11:31 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/09/09 11:15:22 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,14 @@
 void	routine_eat(t_philos *philo)
 {
 	pthread_mutex_lock(&philo->pthread->chopsticks[philo->pid]);
-	print_message(philo, "has taken a fork");
-	pthread_mutex_lock(&philo->pthread->chopsticks[(philo->pid + 1) % philo->pthread->np]);
-	print_message(philo, "has taken a fork");
-	pthread_mutex_lock(&philo->pthread->food);
-	print_message(philo, "is eating");
+	pthread_mutex_lock(&philo->pthread->chopsticks[philo->pid + 1]);
 	philo->last_meal = get_time();
-	pthread_mutex_unlock(&philo->pthread->food);
+	print_message(philo, "has taken a fork");
+	print_message(philo, "has taken a fork");
+	print_message(philo, "is eating");
 	usleep(philo->pthread->tte * 1000);
 	pthread_mutex_unlock(&philo->pthread->chopsticks[philo->pid]);
-	pthread_mutex_unlock(&philo->pthread->chopsticks[(philo->pid + 1) % philo->pthread->np]);
+	pthread_mutex_unlock(&philo->pthread->chopsticks[philo->pid + 1]);
 }
 
 void	*routine(void *param)
