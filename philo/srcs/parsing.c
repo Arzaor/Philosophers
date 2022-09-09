@@ -6,7 +6,7 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 13:36:07 by jbarette          #+#    #+#             */
-/*   Updated: 2022/08/15 13:45:29 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/09/09 11:35:09 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ t_pthread	*parsing_save_to_struct(int argc, char **argv)
 	pthread = init_pthread();
 	pthread->np = ft_atoi(argv[1]);
 	pthread->ttd = ft_atoi(argv[2]);
-	pthread->tts = ft_atoi(argv[3]);
-	pthread->tte = ft_atoi(argv[4]);
+	pthread->tte = ft_atoi(argv[3]);
+	pthread->tts = ft_atoi(argv[4]);
 	if (argc == 6)
 		pthread->nte = ft_atoi(argv[5]);
 	return (pthread);

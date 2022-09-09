@@ -6,7 +6,7 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:08:11 by jbarette          #+#    #+#             */
-/*   Updated: 2022/09/09 11:15:22 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/09/09 11:41:43 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	*routine(void *param)
 		philo->pthread->dead = 1;
 		return (NULL);
 	}
-	if (philo->pid % 2)
+	if (philo->pid % 2 == 0)
 		usleep(10000);
 	while (philo->pthread->dead != 1)
 	{
