@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hterras <hterras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:08:49 by jbarette          #+#    #+#             */
-/*   Updated: 2022/09/06 16:10:30 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/09/09 11:13:50 by hterras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,27 @@ void	death(t_pthread *m)
 {
 	int		i;
 
-	i = -1;
-	while (++i < m->np)
+	while(!m->all_ate)
 	{
-		if (get_time() - m->philos[i].last_meal > m->ttd)
+		i = -1;
+		while (++i < m->np)
 		{
-			print_message(m->philos, "DIED");
-			m->dead = 1;
-			break ;
+			if (get_time() - m->philos[i].last_meal > m->ttd)
+			{
+				print_message(m->philos, "DIED");
+				m->dead = 1;
+			}
+			if (m->philos[i].ate == m->nte && m->nte > 0)
+				m->all_ate++;
 		}
-		if (m->philos[i].ate == m->nte && m->nte > 0)
-			m->all_ate++;
-		if (m->all_ate == m->np)
-		{
-			m->dead = 1;
-			break ;
-		}
-		if (i + 1 == m->np)
-			i = -1;
-		usleep(1600);
+			if (m->all_ate == m->np)
+			{
+				m->dead = 1;
+				break ;
+			}
+			if (i + 1 == m->np)
+				i = -1;
+			if(m->dead)
+				break;
 	}
 }
