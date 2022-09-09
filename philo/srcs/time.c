@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start.c                                            :+:      :+:    :+:   */
+/*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/06 16:06:31 by jbarette          #+#    #+#             */
-/*   Updated: 2022/09/09 14:04:56 by jbarette         ###   ########.fr       */
+/*   Created: 2022/09/09 14:05:23 by jbarette          #+#    #+#             */
+/*   Updated: 2022/09/09 14:05:56 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	start(t_pthread *pthread)
+long long	get_time(void)
 {
-	int	i;
+	struct timeval	t;
 
-	i = -1;
-	pthread->start = get_time();
-	while (++i < pthread->np)
+	gettimeofday(&t, NULL);
+	return (t.tv_sec * 1000 + t.tv_usec / 1000);
+}
+
+void	interval(t_pthread *m, long long time)
+{
+	long long	st;
+
+	st = get_time();
+	while (!m->dead)
 	{
-		if (pthread_create(&pthread->philos[i].tid, NULL, routine, \
-							&pthread->philos[i]))
-			ft_exit("Erreur lors de la creation des philosophers.");
-		pthread->philos[i].last_meal = pthread->start;
+		if (get_time() - st >= time)
+			break ;
+		usleep(100);
 	}
-	death(pthread);
-	i = -1;
-	while (++i < pthread->np)
-		pthread_join(pthread->philos[i].tid, NULL);
-	destroy_mutex(pthread);
 }

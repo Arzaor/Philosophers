@@ -6,7 +6,7 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:08:11 by jbarette          #+#    #+#             */
-/*   Updated: 2022/09/09 11:41:43 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/09/09 14:07:43 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,19 @@ void	routine_eat(t_philos *philo)
 	print_message(philo, "has taken a fork");
 	print_message(philo, "has taken a fork");
 	print_message(philo, "is eating");
-	usleep(philo->pthread->tte * 1000);
+	interval(philo->pthread, philo->pthread->tte);
 	pthread_mutex_unlock(&philo->pthread->chopsticks[philo->pid]);
 	pthread_mutex_unlock(&philo->pthread->chopsticks[philo->pid + 1]);
+}
+
+void	one_philo(t_philos *philo)
+{
+	pthread_mutex_lock(&philo->pthread->chopsticks[philo->right_f]);
+	philo->last_meal = get_time();
+	print_message(philo, "has taken a fork");
+	pthread_mutex_unlock(&philo->pthread->chopsticks[philo->right_f]);
+	print_message(philo, "is died");
+	philo->pthread->dead = 1;
 }
 
 void	*routine(void *param)
@@ -32,12 +42,7 @@ void	*routine(void *param)
 	philo = param;
 	if (philo->pthread->np == 1)
 	{
-		pthread_mutex_lock(&philo->pthread->chopsticks[philo->right_f]);
-		philo->last_meal = get_time();
-		print_message(philo, "has taken a fork");
-		pthread_mutex_unlock(&philo->pthread->chopsticks[philo->right_f]);
-		print_message(philo, "is died");
-		philo->pthread->dead = 1;
+		one_philo(philo);
 		return (NULL);
 	}
 	if (philo->pid % 2 == 0)
@@ -48,7 +53,7 @@ void	*routine(void *param)
 		if (philo->pthread->all_ate)
 			break ;
 		print_message(philo, "is sleeping");
-		usleep(philo->pthread->tts * 1000);
+		interval(philo->pthread, philo->pthread->tts);
 		print_message(philo, "is thinking");
 		philo->ate++;
 	}

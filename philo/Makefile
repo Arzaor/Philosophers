@@ -7,6 +7,7 @@ SRCS	=	srcs/main.c \
 			srcs/start.c \
 			srcs/routine.c \
 			srcs/destroy.c \
+			srcs/time.c \
 
 FLAGS	=	-I ./includes  
 

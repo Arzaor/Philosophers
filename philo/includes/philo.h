@@ -6,7 +6,7 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 13:09:15 by jbarette          #+#    #+#             */
-/*   Updated: 2022/09/06 16:10:36 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/09/09 14:07:53 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 typedef struct s_pthread	t_pthread;
 
-typedef struct	s_philos
+typedef struct s_philos
 {
 	int			pid;
 	long long	last_meal;
@@ -33,7 +33,7 @@ typedef struct	s_philos
 	pthread_t	tid;
 }				t_philos;
 
-typedef struct	s_pthread
+typedef struct s_pthread
 {
 	int				np;
 	int				ttd;
@@ -63,21 +63,25 @@ void		init_mutex(t_pthread *pthread);
 void		init_philos(void);
 
 // START
-void	start(t_pthread *pthread);
+void		start(t_pthread *pthread);
 
 // ROUTINE
-void	*routine(void *param);
-void	routine_eat(t_philos *philo);
+void		*routine(void *param);
+void		one_philo(t_philos *philo);
+void		routine_eat(t_philos *philo);
 
 // DESTROY
-void	destroy_mutex(t_pthread	*pthread);
-void	death(t_pthread *m);
+void		destroy_mutex(t_pthread	*pthread);
+void		death(t_pthread *m);
 
 // UTILS
 void		ft_exit(char *str);
 int			ft_isdigit(int c);
 long long	ft_atoi(const char *str);
-long long	get_time(void);
 void		print_message(t_philos *philos, char *str);
+
+// TIME
+long long	get_time(void);
+void		interval(t_pthread *m, long long time);
 
 #endif

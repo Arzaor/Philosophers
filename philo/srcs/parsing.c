@@ -6,7 +6,7 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 13:36:07 by jbarette          #+#    #+#             */
-/*   Updated: 2022/09/09 11:35:09 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/09/09 14:04:34 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	parsing_character(int argc, char **argv)
 	k = 0;
 	while (i < argc)
 	{
-		while (argv[i][k])	
+		while (argv[i][k])
 		{
 			if (!ft_isdigit(argv[i][k]))
 				ft_exit("Uniquement des chiffres dans les arguments.");
@@ -48,7 +48,8 @@ void	parsing_int(int argc, char **argv)
 	while (i < argc)
 	{
 		if (ft_atoi(argv[i]) < -2147483648 || ft_atoi(argv[i]) > 2147483647)
-			ft_exit("Les valeurs doivent être supérieures à INT_MIN et INT_MAX");
+			ft_exit("Les valeurs doivent être supérieures \
+					à INT_MIN et inférieures à INT_MAX");
 		i++;
 	}
 }
@@ -59,7 +60,8 @@ void	parsing_amount(int argc, char **argv)
 
 	i = 2;
 	if (ft_atoi(argv[1]) < 1 || ft_atoi(argv[1]) > 200)
-		ft_exit("Veuillez vérifier le nombre de philosophers. (MIN : 1, MAX : 200)");
+		ft_exit("Veuillez vérifier le nombre de \
+				philosophers. (MIN : 1, MAX : 200)");
 	while (i < argc - 1)
 	{
 		if (ft_atoi(argv[i]) < 60)

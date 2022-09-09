@@ -6,7 +6,7 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 13:41:37 by jbarette          #+#    #+#             */
-/*   Updated: 2022/09/01 12:57:00 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/09/09 14:04:19 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	init_mutex(t_pthread *pthread)
 	while (--i >= 0)
 	{
 		if (pthread_mutex_init(&pthread->chopsticks[i], NULL))
-			ft_exit("Erreur lors l'initialisation des mutex pour les fourchettes.");
+			ft_exit("Erreur lors l'initialisation des \
+					mutex pour les fourchettes.");
 		pthread->philos[i].pid = i;
 		pthread->philos[i].pthread = pthread;
 	}
@@ -53,7 +54,8 @@ void	init_philos(void)
 	memset(pthread->philos, 0, sizeof(t_philos));
 	if (!(pthread->philos))
 		ft_exit("Erreur lors du malloc des philosophers.");
-	pthread->chopsticks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * pthread->np);
+	pthread->chopsticks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * \
+						pthread->np);
 	if (!(pthread->chopsticks))
 		ft_exit("Erreur lors du malloc des fourchettes.");
 }
