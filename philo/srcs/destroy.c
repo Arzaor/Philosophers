@@ -6,13 +6,13 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:08:49 by jbarette          #+#    #+#             */
-/*   Updated: 2022/09/09 14:15:09 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/09/20 12:58:10 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	destroy_mutex(t_pthread	*pthread)
+int	destroy_mutex(t_pthread	*pthread)
 {
 	int	i;
 
@@ -27,6 +27,7 @@ void	destroy_mutex(t_pthread	*pthread)
 		ft_exit("Erreur lors de la destruction du mutex pour les messages.");
 	if (pthread_mutex_destroy(&pthread->food))
 		ft_exit("Erreur lors de la destruction du mutex pour la nourriture.");
+	return (0);
 }
 
 void	death(t_pthread *m)

@@ -6,7 +6,7 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 13:09:15 by jbarette          #+#    #+#             */
-/*   Updated: 2022/09/20 12:43:56 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/09/20 12:58:22 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void		one_philo(t_philos *philo);
 void		routine_eat(t_philos *philo);
 
 // DESTROY
-void		destroy_mutex(t_pthread	*pthread);
+int			destroy_mutex(t_pthread	*pthread);
 void		death(t_pthread *m);
 
 // UTILS

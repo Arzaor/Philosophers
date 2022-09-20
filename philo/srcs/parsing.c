@@ -6,7 +6,7 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 13:36:07 by jbarette          #+#    #+#             */
-/*   Updated: 2022/09/20 12:52:26 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/09/20 13:05:20 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ int	parsing(int argc, char **argv)
 		return (1);
 	if (parsing_amount(argc, argv))
 		return (1);
-	if (parsing_save_to_struct(argc, argv))
-		return (1);
+	parsing_save_to_struct(argc, argv);
 	return (0);
 }
 
