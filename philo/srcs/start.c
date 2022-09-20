@@ -6,13 +6,13 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:06:31 by jbarette          #+#    #+#             */
-/*   Updated: 2022/09/09 14:04:56 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/09/20 12:44:01 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	start(t_pthread *pthread)
+int	start(t_pthread *pthread)
 {
 	int	i;
 
@@ -30,4 +30,5 @@ void	start(t_pthread *pthread)
 	while (++i < pthread->np)
 		pthread_join(pthread->philos[i].tid, NULL);
 	destroy_mutex(pthread);
+	return (0);
 }

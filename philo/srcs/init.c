@@ -6,7 +6,7 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 13:41:37 by jbarette          #+#    #+#             */
-/*   Updated: 2022/09/09 14:04:19 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/09/20 12:43:19 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_pthread	*init_pthread(void)
 	return (pthread);
 }
 
-void	init_mutex(t_pthread *pthread)
+int	init_mutex(t_pthread *pthread)
 {
 	int	i;
 
@@ -43,9 +43,10 @@ void	init_mutex(t_pthread *pthread)
 		ft_exit("Erreur lors de l'initialisation du mutex pour la nourriture.");
 	if (pthread_mutex_init(&pthread->message, NULL))
 		ft_exit("Erreur lors de l'initialisation du mutex pour les messages.");
+	return (0);
 }
 
-void	init_philos(void)
+int	init_philos(void)
 {
 	t_pthread	*pthread;
 
@@ -58,4 +59,5 @@ void	init_philos(void)
 						pthread->np);
 	if (!(pthread->chopsticks))
 		ft_exit("Erreur lors du malloc des fourchettes.");
+	return (0);
 }

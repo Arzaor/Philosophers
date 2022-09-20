@@ -6,16 +6,16 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 13:24:58 by jbarette          #+#    #+#             */
-/*   Updated: 2022/09/09 14:05:52 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/09/20 12:41:16 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	ft_exit(char *str)
+int	ft_exit(char *str)
 {
 	printf("%s\n", str);
-	exit(1);
+	return (1);
 }
 
 int	ft_isdigit(int c)

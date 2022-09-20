@@ -9,7 +9,7 @@ SRCS	=	srcs/main.c \
 			srcs/destroy.c \
 			srcs/time.c \
 
-FLAGS	=	-I ./includes  
+FLAGS	=	-Wall -Wextra -Werror -I ./includes  
 
 CC		=	gcc $(FLAGS)
 

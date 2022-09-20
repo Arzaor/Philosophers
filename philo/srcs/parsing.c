@@ -6,21 +6,26 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 13:36:07 by jbarette          #+#    #+#             */
-/*   Updated: 2022/09/09 14:04:34 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/09/20 12:52:26 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	parsing(int argc, char **argv)
+int	parsing(int argc, char **argv)
 {
-	parsing_character(argc, argv);
-	parsing_int(argc, argv);
-	parsing_amount(argc, argv);
-	parsing_save_to_struct(argc, argv);
+	if (parsing_character(argc, argv))
+		return (1);
+	if (parsing_int(argc, argv))
+		return (1);
+	if (parsing_amount(argc, argv))
+		return (1);
+	if (parsing_save_to_struct(argc, argv))
+		return (1);
+	return (0);
 }
 
-void	parsing_character(int argc, char **argv)
+int	parsing_character(int argc, char **argv)
 {
 	int	i;
 	int	k;
@@ -38,9 +43,10 @@ void	parsing_character(int argc, char **argv)
 		i++;
 		k = 0;
 	}
+	return (0);
 }
 
-void	parsing_int(int argc, char **argv)
+int	parsing_int(int argc, char **argv)
 {
 	int	i;
 
@@ -49,12 +55,13 @@ void	parsing_int(int argc, char **argv)
 	{
 		if (ft_atoi(argv[i]) < -2147483648 || ft_atoi(argv[i]) > 2147483647)
 			ft_exit("Les valeurs doivent être supérieures \
-					à INT_MIN et inférieures à INT_MAX");
+			à INT_MIN et inférieures à INT_MAX");
 		i++;
 	}
+	return (0);
 }
 
-void	parsing_amount(int argc, char **argv)
+int	parsing_amount(int argc, char **argv)
 {
 	int	i;
 
@@ -68,6 +75,7 @@ void	parsing_amount(int argc, char **argv)
 			ft_exit("Laissons leur du temps, c'est 60ms minimum.");
 		i++;
 	}
+	return (0);
 }
 
 t_pthread	*parsing_save_to_struct(int argc, char **argv)

@@ -6,7 +6,7 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 13:09:15 by jbarette          #+#    #+#             */
-/*   Updated: 2022/09/09 14:07:53 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/09/20 12:43:56 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,19 @@ typedef struct s_pthread
 }				t_pthread;
 
 // PARSING
-void		parsing(int argc, char **argv);
-void		parsing_character(int argc, char **argv);
-void		parsing_int(int argc, char **argv);
-void		parsing_amount(int argc, char **argv);
+int			parsing(int argc, char **argv);
+int			parsing_character(int argc, char **argv);
+int			parsing_int(int argc, char **argv);
+int			parsing_amount(int argc, char **argv);
 t_pthread	*parsing_save_to_struct(int argc, char **argv);
-void		ft_debug(t_pthread *pthread);
 
 // INIT
 t_pthread	*init_pthread(void);
-void		init_mutex(t_pthread *pthread);
-void		init_philos(void);
+int			init_mutex(t_pthread *pthread);
+int			init_philos(void);
 
 // START
-void		start(t_pthread *pthread);
+int			start(t_pthread *pthread);
 
 // ROUTINE
 void		*routine(void *param);
@@ -75,7 +74,7 @@ void		destroy_mutex(t_pthread	*pthread);
 void		death(t_pthread *m);
 
 // UTILS
-void		ft_exit(char *str);
+int			ft_exit(char *str);
 int			ft_isdigit(int c);
 long long	ft_atoi(const char *str);
 void		print_message(t_philos *philos, char *str);
