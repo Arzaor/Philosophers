@@ -6,7 +6,7 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:06:31 by jbarette          #+#    #+#             */
-/*   Updated: 2022/09/20 12:58:54 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/09/22 13:39:39 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	start(t_pthread *pthread)
 	{
 		if (pthread_create(&pthread->philos[i].tid, NULL, routine, \
 							&pthread->philos[i]))
-			ft_exit("Erreur lors de la creation des philosophers.");
+			return (ft_exit("Erreur lors de la creation des philosophers."));
 		pthread->philos[i].last_meal = pthread->start;
 	}
 	death(pthread);

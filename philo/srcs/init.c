@@ -6,7 +6,7 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 13:41:37 by jbarette          #+#    #+#             */
-/*   Updated: 2022/09/20 12:43:19 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/09/22 13:40:01 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,15 @@ int	init_mutex(t_pthread *pthread)
 	while (--i >= 0)
 	{
 		if (pthread_mutex_init(&pthread->chopsticks[i], NULL))
-			ft_exit("Erreur lors l'initialisation des \
-					mutex pour les fourchettes.");
+			return (ft_exit("Erreur lors l'initialisation des \
+					mutex pour les fourchettes."));
 		pthread->philos[i].pid = i;
 		pthread->philos[i].pthread = pthread;
 	}
 	if (pthread_mutex_init(&pthread->food, NULL))
-		ft_exit("Erreur lors de l'initialisation du mutex pour la nourriture.");
+		return (ft_exit("Erreur lors de l'initialisation du mutex pour la nourriture."));
 	if (pthread_mutex_init(&pthread->message, NULL))
-		ft_exit("Erreur lors de l'initialisation du mutex pour les messages.");
+		return (ft_exit("Erreur lors de l'initialisation du mutex pour les messages."));
 	return (0);
 }
 
@@ -54,10 +54,10 @@ int	init_philos(void)
 	pthread->philos = (t_philos *)malloc(sizeof(t_philos) * pthread->np);
 	memset(pthread->philos, 0, sizeof(t_philos));
 	if (!(pthread->philos))
-		ft_exit("Erreur lors du malloc des philosophers.");
+		return (ft_exit("Erreur lors du malloc des philosophers."));
 	pthread->chopsticks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * \
 						pthread->np);
 	if (!(pthread->chopsticks))
-		ft_exit("Erreur lors du malloc des fourchettes.");
+		return (ft_exit("Erreur lors du malloc des fourchettes."));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:08:49 by jbarette          #+#    #+#             */
-/*   Updated: 2022/09/20 12:58:10 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/09/22 13:42:07 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ int	destroy_mutex(t_pthread	*pthread)
 	while (++i < pthread->np)
 	{
 		if (pthread_mutex_destroy(&pthread->chopsticks[i]))
-			ft_exit("Erreur lors de la destruction \
-					des mutex pour les fourchettes.");
+			return (ft_exit("Erreur lors de la destruction \
+					des mutex pour les fourchettes."));
 	}
 	if (pthread_mutex_destroy(&pthread->message))
-		ft_exit("Erreur lors de la destruction du mutex pour les messages.");
+		return (ft_exit("Erreur lors de la destruction du mutex pour les messages."));
 	if (pthread_mutex_destroy(&pthread->food))
-		ft_exit("Erreur lors de la destruction du mutex pour la nourriture.");
+		return (ft_exit("Erreur lors de la destruction du mutex pour la nourriture."));
 	return (0);
 }
 
