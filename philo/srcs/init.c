@@ -6,7 +6,7 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 13:41:37 by jbarette          #+#    #+#             */
-/*   Updated: 2022/09/22 13:40:01 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/09/22 13:47:54 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,11 @@ int	init_mutex(t_pthread *pthread)
 		pthread->philos[i].pthread = pthread;
 	}
 	if (pthread_mutex_init(&pthread->food, NULL))
-		return (ft_exit("Erreur lors de l'initialisation du mutex pour la nourriture."));
+		return (ft_exit("Erreur lors de l'initialisation \
+		du mutex pour la nourriture."));
 	if (pthread_mutex_init(&pthread->message, NULL))
-		return (ft_exit("Erreur lors de l'initialisation du mutex pour les messages."));
+		return (ft_exit("Erreur lors de l'initialisation \
+		du mutex pour les messages."));
 	return (0);
 }
 
