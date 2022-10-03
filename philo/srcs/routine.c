@@ -6,7 +6,7 @@
 /*   By: jbarette <jbarette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:08:11 by jbarette          #+#    #+#             */
-/*   Updated: 2022/09/09 14:07:43 by jbarette         ###   ########.fr       */
+/*   Updated: 2022/10/03 13:16:18 by jbarette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	one_philo(t_philos *philo)
 	philo->last_meal = get_time();
 	print_message(philo, "has taken a fork");
 	pthread_mutex_unlock(&philo->pthread->chopsticks[philo->right_f]);
+	interval(philo->pthread, philo->pthread->ttd);
 	print_message(philo, "is died");
 	philo->pthread->dead = 1;
 }
